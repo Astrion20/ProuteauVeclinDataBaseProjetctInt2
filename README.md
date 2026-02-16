@@ -55,11 +55,11 @@ This table outlines all the raw data points gathered during the analysis phase. 
 | **21.** Type/category of the resource (e.g., fluid, item) | Text | 20 |
 | **22.** ID of the site powered by a specific energy source | Alphanumeric | 10 |
 | **23.** ID of the site where a specific factory is implemented | Alphanumeric | 10 |
-| **24.** Name of the station hosted at a specific site | Text | 50 |
+| **24.** ID of the station hosted at a specific site | Alphanumeric | 10 |
 | **25.** Name of a station linked in the railway network | Text | 50 |
 | **26.** Name of a faction that possesses a specific station | Text | 50 |
-| **27.** ID of a resource produced by a specific factory | Alphanumeric | 10 |
-| **28.** ID of a resource required as input by a specific factory | Alphanumeric | 10 |
+| **27.** ID of a resource produced by a specific factory | Text | 50 |
+| **28.** ID of a resource required as input by a specific factory | Text | 50 |
 | **29.** ID of the site where a worker is actively affiliated | Alphanumeric | 10 |
 | **30.** Name of the faction to which a worker is actively affiliated | Text | 50 |
 
