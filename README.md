@@ -64,4 +64,4 @@ This table outlines all the raw data points gathered during the analysis phase. 
 | **30.** Name of the faction to which a worker is actively affiliated | Text | 50 |
 
 # III - The MCD File we created
-[MCD chart](mcd.png)
+![MCD chart](mcd.png)
