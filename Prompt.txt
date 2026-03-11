@@ -1,0 +1,43 @@
+Provide the insertion queries used to populate the database, whose relational model is as follows:
+
+Worker = (worker_id INT, worker_pseudo VARCHAR(16))     primary key = worker_id
+Site = (site_id VARCHAR(10), site_name VARCHAR(50), site_x_coordinate INT, site_z_coordinate INT)     primary key = site_id
+Resource = (resource_id VARCHAR(50), resource_name VARCHAR(50), resource_type VARCHAR(20))     primary key = resource_id
+Faction = (faction_name VARCHAR(50), faction_color VARCHAR(30))     primary key = faction_name
+Energy_source = (source_id VARCHAR(10), source_type VARCHAR(30), source_quantity INT, #site_id)     primary key = source_id
+Station = (station_id VARCHAR(10), station_name VARCHAR(50), station_tracks INT, station_supports_fret BOOL, station_supports_transport BOOL, #site_id)     primary key = station_id, unique = site_id
+Factory = (factory_id VARCHAR(10), factory_name VARCHAR(50), #site_id)     primary key = factory_id
+output = (#factory_id, #resource_id)     primary key = (factory_id, resource_id)
+input = (#factory_id, #resource_id)     primary key = (factory_id, resource_id)
+affiliation = (#worker_id, #site_id, #faction_name)     primary key = (worker_id, site_id, faction_name)
+possesses = (#faction_name, #station_id)     primary key = (faction_name, station_id)
+linked_to = (#station_id, #station_id_1)     primary key = (station_id, station_id_1)
+
+Primary keys correspond to IDs, unless otherwise specified (when it is a composite attribute). Foreign keys are identified by # and have the same name as the primary keys to which they refer.
+
+There must be: 20 rows for the Worker table, 10 rows for the Site table, 30 rows for the Resource table (corresponding to Minecraft and/or Create resources), 10 rows for Energy_source, 10 rows for Station, and 20 rows for Factory. Ensure that every factory has at least one output (and one input if necessary for producing the output), every station is linked to at least one other station, and there are at least 40 affiliations.
+
+There are four factions, with the following characteristics:
+
+    name: "Cogwheel Syndicate", color: "#8B4513"
+
+    name: "Aether Vanguard", color: "#00CED1"
+
+    name: "Obsidian Order", color: "#4B0082"
+
+    name: "Brass Republic", color: "#DAA520"
+
+Foreign keys must refer to existing primary keys: provide the lines starting with filling in the tables in which there are no foreign keys, then the tables in which the foreign keys refer to primary keys in tables that have already been filled in.
+
+The data must comply with the following validation constraints:
+ALTER TABLE Site ADD CONSTRAINT chk_site_coords_range CHECK (site_x_coordinate >= -100000 AND site_x_coordinate <= 100000 AND site_z_coordinate >= -100000 AND site_z_coordinate <= 100000);
+ALTER TABLE Site ADD CONSTRAINT chk_site_id_prefix CHECK (site_id LIKE 'S-%');
+ALTER TABLE Station ADD CONSTRAINT chk_station_id_prefix CHECK (station_id LIKE 'ST-%');
+ALTER TABLE Faction ADD CONSTRAINT chk_faction_color_format CHECK (faction_color LIKE '#%' AND LENGTH(faction_color) <= 7);
+ALTER TABLE Station ADD CONSTRAINT chk_station_has_purpose CHECK (station_supports_fret <> 0 OR station_supports_transport <> 0);
+ALTER TABLE Station ADD CONSTRAINT chk_station_tracks_logic CHECK (station_tracks >= 1 AND station_tracks <= 32);
+ALTER TABLE Energy_source ADD CONSTRAINT chk_energy_type_list CHECK (source_type IN ('Steam Engine', 'Windmill Bearing', 'Water Wheel', 'Encased Fan', 'Hand Crank', 'Diesel Engine', 'Gas Turbine', 'Industrial Steam Turbine', 'Electric Motor', 'Air Engine'));
+ALTER TABLE linked_to ADD CONSTRAINT chk_no_loopback CHECK (station_id <> station_id_1);
+
+Make sure that the workers' pseudonyms, site names, and factory names are coherent in the Minecraft context and fit an industrial, engineering, or steampunk theme.
+Provide the set in the form of an SQL script ready to be executed.
