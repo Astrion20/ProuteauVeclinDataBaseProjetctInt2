@@ -77,7 +77,7 @@ This table outlines all the raw data points gathered during the analysis phase. 
 
 **Energy_source** = (**<u>source_id</u>** *VARCHAR(10)*, source_type *VARCHAR(30)*, source_quantity *INT*, *#site_id*);
 
-**Station** = (**<u>station_id</u>** *VARCHAR(10)*, station_name *VARCHAR(50)*, station_tracks *BYTE*, station_supports_fret *LOGICAL*, station_supports_transport *LOGICAL*, *#site_id*);
+**Station** = (**<u>station_id</u>** *VARCHAR(10)*, station_name *VARCHAR(50)*, station_tracks *INT*, station_supports_fret *BOOL*, station_supports_transport *BOOL*, *#site_id*);
 
 **Factory** = (**<u>factory_id</u>** *VARCHAR(10)*, factory_name *VARCHAR(50)*, *#site_id*);
 
