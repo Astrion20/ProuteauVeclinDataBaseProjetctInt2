@@ -63,5 +63,30 @@ This table outlines all the raw data points gathered during the analysis phase. 
 | **29.** ID of the site where a worker is actively affiliated | Alphanumeric | 10 |
 | **30.** Name of the faction to which a worker is actively affiliated | Text | 50 |
 
-# III - The MCD File we created
+# III - The CDM File we created
 ![MCD chart](mcd.png)
+
+# IV - The LDM
+**Worker** = (**<u>worker_id</u>** *INT*, worker_pseudo *VARCHAR(16)*);
+
+**Site** = (**<u>site_id</u>** *VARCHAR(10)*, site_name *VARCHAR(50)*, site_x_coordinate *INT*, site_z_coordinate *INT*);
+
+**Resource** = (**<u>resource_id</u>** *VARCHAR(50)*, resource_name *VARCHAR(50)*, resource_type *VARCHAR(20)*);
+
+**Faction** = (**<u>faction_name</u>** *VARCHAR(50)*, faction_color *VARCHAR(30)*);
+
+**Energy_source** = (**<u>source_id</u>** *VARCHAR(10)*, source_type *VARCHAR(30)*, source_quantity *INT*, *#site_id*);
+
+**Station** = (**<u>station_id</u>** *VARCHAR(10)*, station_name *VARCHAR(50)*, station_tracks *BYTE*, station_supports_fret *LOGICAL*, station_supports_transport *LOGICAL*, *#site_id*);
+
+**Factory** = (**<u>factory_id</u>** *VARCHAR(10)*, factory_name *VARCHAR(50)*, *#site_id*);
+
+**output** = (**<u>#factory_id, #resource_id</u>**);
+
+**affiliation** = (**<u>#worker_id, #site_id, #faction_name</u>**);
+
+**input** = (**<u>#factory_id, #resource_id</u>**);
+
+**possesses** = (**<u>#faction_name, #station_id</u>**);
+
+**linked_to** = (**<u>#station_id, #station_id_1</u>**);
