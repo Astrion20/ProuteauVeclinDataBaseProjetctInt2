@@ -32,7 +32,3 @@ CHECK (station_tracks >= 1 AND station_tracks <= 32);
 ALTER TABLE Energy_source 
 ADD CONSTRAINT chk_energy_type_list 
 CHECK (source_type IN ('Steam Engine', 'Windmill Bearing', 'Water Wheel', 'Encased Fan', 'Hand Crank', 'Diesel Engine', 'Gas Turbine', 'Industrial Steam Turbine', 'Electric Motor', 'Air Engine'));
-
-ALTER TABLE linked_to 
-ADD CONSTRAINT chk_no_loopback 
-CHECK (station_id <> station_id_1);
